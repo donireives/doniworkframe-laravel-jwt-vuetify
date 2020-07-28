@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="admin">
-        <example-component></example-component>
+        <main-app></main-app>
     </div>
 </body>
 </html>

@@ -24,3 +24,7 @@ Auth::routes();
 Route::get('/admin', function () {
     return view('admin.admin');
 });
+
+Route::get('/admin{any}', function () {
+    return view('admin.admin');
+})->where('any','.*');
