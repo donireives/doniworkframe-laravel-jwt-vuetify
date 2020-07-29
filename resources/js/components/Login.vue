@@ -62,8 +62,10 @@ import {login} from '../helpers/auth';
     }),
     methods:{
         authenticate(){
+            this.$store.dispatch("login");
             login(this.$data.form)
             .then((res)=>{
+                this.$store.commit("loginSuccess",res)
                 this.$router.push('/admin/home')
             })
             .catch((error)=>{

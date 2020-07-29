@@ -85,7 +85,7 @@
         style="width: 300px"
         class="ml-0 pl-4"
       >
-        <span class="hidden-sm-and-down">Google Contacts</span>
+        <span class="hidden-sm-and-down">Invento DataWarehouse</span>
       </v-toolbar-title>
       <v-text-field
         flat
@@ -111,8 +111,8 @@
           item
         >
           <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
+            src="https://invento.co.id/static/images/favicon.png"
+            alt="Invento"
           ></v-img></v-avatar>
       </v-btn>
     </v-app-bar>

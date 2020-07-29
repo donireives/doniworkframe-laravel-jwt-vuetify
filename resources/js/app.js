@@ -12,6 +12,8 @@ import Vuetify from 'vuetify';
 import MainApp from './components/MainApp.vue';
 import VueRouter from 'vue-router';
 import {routes} from './routes';
+import store from './store';
+import {initialize} from './helpers/general';
 import { Form, HasError, AlertError } from 'vform'
 window.Form = Form
 
@@ -25,9 +27,11 @@ const router = new VueRouter({
     mode : 'history'
 })
 
+initialize(store,router);
 const app = new Vue({
     el: '#admin',
     router,
+    store,
     vuetify : new Vuetify(),
     components : {
         MainApp
