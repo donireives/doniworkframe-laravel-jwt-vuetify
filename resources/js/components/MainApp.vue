@@ -85,7 +85,7 @@
         style="width: 300px"
         class="ml-0 pl-4"
       >
-        <span class="hidden-sm-and-down">Invento DataWarehouse</span>
+        <span class="hidden-sm-and-down">DoniWasHere</span>
       </v-toolbar-title>
       <v-text-field
         flat
@@ -111,8 +111,8 @@
           item
         >
           <v-img
-            src="https://invento.co.id/static/images/favicon.png"
-            alt="Invento"
+            src="https://drive.google.com/uc?export=view&id=1fJNZHjQASv1qL8VFxjEwg0V2pRhTos04"
+            alt="Doni"
           ></v-img></v-avatar>
       </v-btn>
     </v-app-bar>
