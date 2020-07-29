@@ -117,7 +117,6 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-        doni was here
         <router-view></router-view>
     </v-main>
     <v-btn

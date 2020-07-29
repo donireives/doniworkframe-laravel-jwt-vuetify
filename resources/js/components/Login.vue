@@ -1,10 +1,4 @@
 <template>
-  <v-app id="inspire">
-    <v-main>
-      <v-container
-        class="fill-height"
-        fluid
-      >
         <v-row
           align="center"
           justify="center"
@@ -21,56 +15,61 @@
                 flat
               >
                 <v-toolbar-title>Login form</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      :href="source"
-                      icon
-                      large
-                      target="_blank"
-                      v-on="on"
-                    >
-                      <v-icon>mdi-code-tags</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Source</span>
-                </v-tooltip>
+                <div class="flex-grow-1"></div>
+
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <form @submit.prevent="authenticate">
                   <v-text-field
+                  v-model="form.email"
                     label="Login"
                     name="login"
-                    prepend-icon="mdi-account"
+                    prepend-icon="person"
                     type="text"
                   ></v-text-field>
 
                   <v-text-field
+                  v-model="form.password"
                     id="password"
                     label="Password"
                     name="password"
-                    prepend-icon="mdi-lock"
+                    prepend-icon="lock"
                     type="password"
                   ></v-text-field>
-                </v-form>
+                </form>
               </v-card-text>
               <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="primary">Login</v-btn>
+                <div class="flex-grow-1"></div>
+                <v-btn type="submit" @click="authenticate" color="primary">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
-      </v-container>
-    </v-main>
-  </v-app>
 </template>
 
 <script>
+import {login} from '../helpers/auth';
   export default {
     props: {
       source: String,
     },
+    data: () => ({
+      drawer: null,
+       form: new Form({
+        email : '',
+        password: '',
+      })
+    }),
+    methods:{
+        authenticate(){
+            login(this.$data.form)
+            .then((res)=>{
+                this.$router.push('/admin/home')
+            })
+            .catch((error)=>{
+
+            })
+        }
+      },
   }
 </script>
