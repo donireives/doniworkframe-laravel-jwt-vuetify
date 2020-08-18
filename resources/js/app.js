@@ -1,8 +1,3 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
 require('./bootstrap');
 
@@ -17,6 +12,12 @@ import {initialize} from './helpers/general';
 import { Form, HasError, AlertError } from 'vform'
 window.Form = Form
 
+import Swal from 'sweetalert2';
+
+// CommonJS
+window.Swal = require('sweetalert2')
+
+
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 Vue.use(Vuetify);
@@ -28,6 +29,7 @@ const router = new VueRouter({
 })
 
 initialize(store,router);
+window.Fire = new Vue()
 const app = new Vue({
     el: '#admin',
     router,

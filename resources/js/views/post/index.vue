@@ -60,7 +60,52 @@ export default {
     },
     methods: {
         deletePost(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    this.form.delete('/api/posts/' + id)
+                     Fire.$emit('afterCreate')
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    Swal.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+                // this.form.delete('/api/posts/' + id)
+                //     .then((results) => {
+                //          Fire.$emit('afterCreate')
+                //         Swal.fire(
+                //             'Deleted!',
+                //             'Your file has been deleted.',
+                //             'success'
+                //         )
 
+                //     })
+                //     .catch((error) => {
+                //         Swal.fire({
+                //             type: 'error',
+                //             title: 'Ooops',
+                //             text: error
+                //         })
+                //     })
+
+            })
         },
         refreshPost() {
             this.$store.dispatch('getPosts');
@@ -81,7 +126,10 @@ export default {
         this.$store.dispatch('getPosts');
     },
     created() {
-
+        Fire.$on('afterCreate', () => {
+            this.refreshPost();
+        })
+        this.refreshPost();
     }
 }
 </script>

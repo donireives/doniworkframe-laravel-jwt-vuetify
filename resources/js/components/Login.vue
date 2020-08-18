@@ -8,6 +8,7 @@
             sm="8"
             md="4"
           >
+                <form @submit.prevent="authenticate">
             <v-card class="elevation-12">
               <v-toolbar
                 color="primary"
@@ -19,7 +20,6 @@
 
               </v-toolbar>
               <v-card-text>
-                <form @submit.prevent="authenticate">
                   <v-text-field
                   v-model="form.email"
                     label="Login"
@@ -36,13 +36,13 @@
                     prepend-icon="lock"
                     type="password"
                   ></v-text-field>
-                </form>
               </v-card-text>
               <v-card-actions>
                 <div class="flex-grow-1"></div>
                 <v-btn type="submit" @click="authenticate" color="primary">Login</v-btn>
               </v-card-actions>
             </v-card>
+                </form>
           </v-col>
         </v-row>
 </template>
@@ -60,18 +60,24 @@ import {login} from '../helpers/auth';
         password: '',
       })
     }),
-    methods:{
-        authenticate(){
-            this.$store.dispatch("login");
-            login(this.$data.form)
-            .then((res)=>{
-                this.$store.commit("loginSuccess",res)
-                this.$router.push('/admin/home')
-            })
-            .catch((error)=>{
-
-            })
-        }
-      },
+    methods: {
+      authenticate(){
+        this.$store.dispatch("login");
+        Swal.showLoading()
+        login(this.$data.form)
+        .then((res)=>{
+          Swal.close()
+          this.$store.commit("loginSuccess",res)
+          this.$router.push('/admin/home')
+        })
+        .catch((error)=>{
+          Swal.fire({
+            type:'error',
+            title:'Ooops',
+            text: error
+          })
+        })
+      }
+    },
   }
 </script>
